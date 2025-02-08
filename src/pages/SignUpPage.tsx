@@ -1,7 +1,7 @@
 import SignUpForm from "../components/features/auth/SignupForm";
 
-const Signup = () => {
+const SignUpPage = () => {
   return <SignUpForm />;
 };
 
-export default Signup;
+export default SignUpPage;
