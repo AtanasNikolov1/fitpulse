@@ -46,4 +46,5 @@ const userSignupSchema = z
     }
   );
 
+export type UserSignUpData = z.infer<typeof userSignupSchema>;
 export default userSignupSchema;

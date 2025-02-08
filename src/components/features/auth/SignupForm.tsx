@@ -1,21 +1,21 @@
-import { z } from "zod";
-import userSignupSchema from "../../../schemas/userSignupSchema";
+import userSignupSchema, {
+  UserSignUpData,
+} from "../../../schemas/userSignupSchema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { signUpUser } from "../../../services/authService";
 
-type FormData = z.infer<typeof userSignupSchema>;
 const SignUpForm = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<FormData>({
+  } = useForm<UserSignUpData>({
     resolver: zodResolver(userSignupSchema),
   });
 
-  const onSubmit = async (data: FormData) => {
+  const onSubmit = async (data: UserSignUpData) => {
     try {
       const { firstName, lastName, email, password } = data;
       await signUpUser(firstName, lastName, email, password);
