@@ -32,13 +32,13 @@ const SignUpForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <div>
         <label>First Name</label>
-        <input {...register("firstName")} />
+        <input type="text" {...register("firstName")} />
         {errors.firstName && <p>{errors.firstName.message}</p>}
       </div>
 
       <div>
         <label>Last Name</label>
-        <input {...register("lastName")} />
+        <input type="text" {...register("lastName")} />
         {errors.lastName && <p>{errors.lastName.message}</p>}
       </div>
 
