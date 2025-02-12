@@ -1,4 +1,8 @@
-import { createUserWithEmailAndPassword, deleteUser } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  deleteUser,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { auth } from "../config/firebase";
 import { createUserProfile } from "./userService";
 import { handleError } from "../utils/errorHandler";
@@ -32,5 +36,19 @@ export const signUpUser = async (
     }
 
     handleError(error, "Error during user sign-up or profile creation");
+  }
+};
+
+export const logInUser = async (email: string, password: string) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    return userCredential.user;
+  } catch (error) {
+    handleError(error, "Error logging in user");
+    throw new Error("Invalid email or password. Please try again.");
   }
 };
