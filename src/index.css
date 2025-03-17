@@ -1,1 +1,38 @@
 @import "tailwindcss";
+
+@theme {
+  --font-headings: "Merriweather", serif;
+  --font-body: "Inter", serif;
+  --font-quotes: "Playfair Display", serif;
+
+  --color-pure-white: #fff; /*Buttons, small UI components*/
+  --color-soft-white: #fefefa; /*Background areas and sections, giving a softer look*/
+
+  --color-main-black: #1b1b1b;
+
+  --color-light-gray: #f4f4f4; /*Backgrounds, sections that need subtle distinction*/
+  --color-medium-gray: #a3a3a3; /*Borders, secondary text, placeholders in input fields*/
+  --color-dark-gray: #6b6b6b; /*Secondary text, disabled buttons*/
+  --color-darker-gray: #4b4b4b; /*Dividers, background, for inactive elements*/
+  --color-charcoal-gray: #333333; /*Main text, important labels, and icons*/
+  --color-dark-charcoal: #1f1f1f; /*Strong contrast backgrounds or modals*/
+
+  --color-light-violet: #e9d7fe; /*Backgrounds and hover*/
+  --color-soft-violet: #854ce1; /*Subtle buttons and links*/
+  --color-medium-violet: #7636dd; /*Primary buttons*/
+  --color-deep-violet: #5a20b6; /*Active elements and highlights*/
+  --color-dark-violet: #4c1d95; /*Dark mode and strong visual focus*/
+}
+
+* {
+  font-family: var(--font-body);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h5 {
+  font-family: var(--font-headings);
+}
