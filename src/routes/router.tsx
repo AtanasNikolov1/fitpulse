@@ -1,21 +1,14 @@
 import { createBrowserRouter, Link, Outlet } from "react-router-dom";
 import Home from "../pages/Home";
-import Login from "../pages/LoginPage";
+import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import Dashboard from "../pages/Dashboard";
 import NotFound from "./../pages/NotFound";
+import ProtectedRoute from "../components/layout/ProtectedRoute";
 
 const AppLayout = () => {
   return (
     <>
-      <h1 className="text-3xl bg-red-500">FitPulse</h1>
-      <nav className="flex gap-4">
-        <Link to="/">Home</Link>
-        <Link to="/login">Login</Link>
-        <Link to="/signup">Signup</Link>
-        <Link to="/dashboard">Dashboard</Link>
-      </nav>
-
       <Outlet />
     </>
   );
@@ -27,9 +20,13 @@ const router = createBrowserRouter([
     element: <AppLayout />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/login", element: <Login /> },
+      { path: "/login", element: <LoginPage /> },
       { path: "/signup", element: <SignUpPage /> },
-      { path: "/dashboard", element: <Dashboard /> },
+      {
+        path: "/dashboard",
+        element: <ProtectedRoute />,
+        children: [{ path: "/dashboard", element: <Dashboard /> }],
+      },
       { path: "*", element: <NotFound /> },
     ],
   },
