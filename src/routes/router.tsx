@@ -5,10 +5,12 @@ import SignUpPage from "../pages/SignUpPage";
 import Dashboard from "../pages/Dashboard";
 import NotFound from "./../pages/NotFound";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
+import NavBar from "../components/layout/NavBar";
 
 const AppLayout = () => {
   return (
     <>
+      <NavBar />
       <Outlet />
     </>
   );
