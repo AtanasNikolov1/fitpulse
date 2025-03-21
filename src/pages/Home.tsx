@@ -1,5 +1,11 @@
+import HomeHeroSection from "../components/features/home/HomeHeroSection";
+
 const Home = () => {
-  return <h1 className="text-2xl">Home Page</h1>;
+  return (
+    <div>
+      <HomeHeroSection />
+    </div>
+  );
 };
 
 export default Home;
