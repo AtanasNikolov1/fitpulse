@@ -1,37 +1,54 @@
-import { createBrowserRouter, Link, Outlet } from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import Dashboard from "../pages/Dashboard";
 import NotFound from "./../pages/NotFound";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
-import NavBar from "../components/layout/NavBar";
-
-const AppLayout = () => {
-  return (
-    <>
-      <NavBar />
-      <Outlet />
-    </>
-  );
-};
+import PublicLayout from "../components/layout/PublicLayout";
+import AuthLayout from "../components/layout/AuthLayout";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <AppLayout />,
+    element: <PublicLayout />,
     children: [
       { path: "/", element: <Home /> },
-      { path: "/login", element: <LoginPage /> },
-      { path: "/signup", element: <SignUpPage /> },
-      {
-        path: "/dashboard",
-        element: <ProtectedRoute />,
-        children: [{ path: "/dashboard", element: <Dashboard /> }],
-      },
-      { path: "*", element: <NotFound /> },
+      { path: "/about", element: <Home /> },
+      { path: "/contact", element: <Home /> },
     ],
   },
+  {
+    path: "/login",
+    element: <AuthLayout />,
+    children: [{ path: "/login", element: <LoginPage /> }],
+  },
+  {
+    path: "/signup",
+    element: <AuthLayout />,
+    children: [{ path: "/signup", element: <SignUpPage /> }],
+  },
+  {
+    path: "/dashboard",
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "",
+        element: <DashboardLayout />,
+        children: [
+          { path: "progress", element: <Dashboard /> },
+          { path: "workouts", element: <Dashboard /> },
+          { path: "nutrition", element: <Dashboard /> },
+          { path: "goals", element: <Dashboard /> },
+          { path: "social", element: <Dashboard /> },
+        ],
+      },
+    ],
+  },
+  { path: "*", element: <NotFound /> },
 ]);
+
+
 
 export default router;
