@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const HomeHeroSection = () => {
   return (
-    <section className="relative flex flex-col justify-center items-center h-[80vh] bg-gray-600 text-pure-white">
+    <section className="relative flex flex-col justify-center items-center h-[70vh] bg-gray-600 text-pure-white">
       <div
         className="absolute top-0 left-0 w-full h-full bg-cover bg-center opacity-50"
         style={{
