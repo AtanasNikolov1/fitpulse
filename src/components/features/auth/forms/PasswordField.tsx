@@ -25,7 +25,7 @@ const PasswordField = ({
       </label>
       <div className="relative w-full">
         <input
-          className="border border-medium-gray p-1.5 sm:p-2 rounded-md focus:outline-none focus:border-1.5 focus:border-deep-violet focus:ring-1 focus:ring-deep-violet w-full pr-10"
+          className="border border-medium-gray p-1.5 sm:p-2 rounded-md focus:outline-none focus:border-1.5 focus:border-deep-violet focus:ring-1 focus:ring-deep-violet w-full pr-10 bg-pure-white "
           type={isVisible ? "text" : "password"}
           {...register}
         />

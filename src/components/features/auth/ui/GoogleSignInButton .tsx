@@ -22,7 +22,7 @@ const GoogleSignInButton = () => {
   return (
     <button
       type="button"
-      className="flex items-center justify-center gap-2 w-full border border-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-100 hover:cursor-pointer"
+      className="flex items-center justify-center gap-2 w-full border border-medium-gray text-gray-700 bg-pure-white py-3 px-4 rounded-lg hover:bg-soft-violet hover:text-pure-white hover:cursor-pointer transition"
       onClick={handleGoogleSignUp}
     >
       <img
