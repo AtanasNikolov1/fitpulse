@@ -1,11 +1,11 @@
-import { BarChart, Dumbbell, Target, Users, ChefHat, Bell } from "lucide-react"; // Import the icons from Lucide React
+import { BarChart, Dumbbell, Target, Users, ChefHat, Bell } from "lucide-react";
 import Feature from "./Feature";
 
 const FeaturesSection = () => {
   return (
-    <section className="bg-light-gray py-16 md:py-20">
+    <section className=" py-15 md:py-20">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl  md:text-4xl font-extrabold mb-14 md:mb-17 lg:mb-20  text-soft-violet tracking-wide">
+        <h2 className="text-3xl  md:text-4xl font-extrabold pb-12 md:pb-15 lg:pb-18 text-charcoal-gray tracking-wide">
           Features Designed for Your Progress
         </h2>
 
