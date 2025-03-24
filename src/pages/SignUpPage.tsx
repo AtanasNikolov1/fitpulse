@@ -8,7 +8,7 @@ import SignUpForm from "./../components/features/auth/forms/SignUpForm";
 
 const SignUpPage = () => {
   return (
-    <div className="flex min-h-screen">
+    <main className="flex min-h-screen bg-light-gray">
       <AuthWallpaper />
       <AuthFormWrapper>
         <AuthTitle text="Start Your Journey with Fitpulse" />
@@ -17,7 +17,7 @@ const SignUpPage = () => {
         <AuthDivider />
         <GoogleSignInButton />
       </AuthFormWrapper>
-    </div>
+    </main>
   );
 };
 

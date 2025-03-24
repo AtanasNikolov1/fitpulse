@@ -8,7 +8,7 @@ import GoogleSignInButton from "../components/features/auth/ui/GoogleSignInButto
 
 const LoginPage = () => {
   return (
-    <div className="flex min-h-screen">
+    <main className="flex min-h-screen bg-light-gray">
       <AuthWallpaper />
       <AuthFormWrapper>
         <AuthTitle text="Welcome Back to FitPulse" />
@@ -17,7 +17,7 @@ const LoginPage = () => {
         <AuthDivider />
         <GoogleSignInButton />
       </AuthFormWrapper>
-    </div>
+    </main>
   );
 };
 
