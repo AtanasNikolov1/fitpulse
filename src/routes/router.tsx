@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
+import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import Dashboard from "../pages/Dashboard";
@@ -14,9 +14,9 @@ const router = createBrowserRouter([
     path: "/",
     element: <PublicLayout />,
     children: [
-      { path: "/", element: <Home /> },
       { path: "/about", element: <Home /> },
-      { path: "/contact", element: <Home /> },
+      { path: "/", element: <HomePage /> },
+      { path: "/contact", element: <HomePage /> },
     ],
   },
   {
@@ -48,7 +48,5 @@ const router = createBrowserRouter([
   },
   { path: "*", element: <NotFound /> },
 ]);
-
-
 
 export default router;
