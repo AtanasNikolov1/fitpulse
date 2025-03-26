@@ -8,14 +8,15 @@ import ProtectedRoute from "../components/layout/ProtectedRoute";
 import PublicLayout from "../components/layout/PublicLayout";
 import AuthLayout from "../components/layout/AuthLayout";
 import DashboardLayout from "../components/layout/DashboardLayout";
+import AboutPage from "../pages/AboutPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <PublicLayout />,
     children: [
-      { path: "/about", element: <Home /> },
       { path: "/", element: <HomePage /> },
+      { path: "/about", element: <AboutPage /> },
       { path: "/contact", element: <HomePage /> },
     ],
   },
