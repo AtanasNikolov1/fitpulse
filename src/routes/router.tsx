@@ -3,7 +3,7 @@ import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
 import Dashboard from "../pages/Dashboard";
-import NotFound from "./../pages/NotFound";
+import NotFoundPage from "../pages/NotFoundPage";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import PublicLayout from "../components/layout/PublicLayout";
 import AuthLayout from "../components/layout/AuthLayout";
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
       },
     ],
   },
-  { path: "*", element: <NotFound /> },
+  { path: "*", element: <NotFoundPage /> },
 ]);
 
 export default router;
