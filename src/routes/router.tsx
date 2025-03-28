@@ -9,6 +9,7 @@ import PublicLayout from "../components/layout/PublicLayout";
 import AuthLayout from "../components/layout/AuthLayout";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import AboutPage from "../pages/AboutPage";
+import ContactPage from "../pages/ContactPage";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage /> },
       { path: "/about", element: <AboutPage /> },
-      { path: "/contact", element: <HomePage /> },
+      { path: "/contact", element: <ContactPage /> },
     ],
   },
   {
