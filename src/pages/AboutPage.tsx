@@ -3,10 +3,10 @@ import AboutSection from "../components/features/about/AboutSection";
 
 const AboutPage = () => {
   return (
-    <div className="bg-light-gray">
+    <main className="bg-light-gray">
       <AboutHeroSection />
       <AboutSection />
-    </div>
+    </main>
   );
 };
 
