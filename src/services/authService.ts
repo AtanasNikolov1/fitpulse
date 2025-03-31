@@ -67,11 +67,10 @@ export const logInUser = async (email: string, password: string) => {
 
 export const logOutUser = async () => {
   try {
-    await signOut(auth); // Firebase method to sign the user out
-    console.log("User logged out successfully.");
+    await signOut(auth);
+    return "User logged out successfully.";
   } catch (error) {
-    console.error("Error logging out user: ", error);
-    throw new Error("An error occurred while logging out. Please try again.");
+    handleError(error, "Failed to log out. Please try again.");
   }
 };
 
