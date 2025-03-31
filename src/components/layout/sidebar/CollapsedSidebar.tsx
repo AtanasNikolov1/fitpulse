@@ -1,17 +1,34 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { LogOut, Menu } from "lucide-react";
 import { menuItems } from "./sidebarMenuData";
+import { logOutUser } from "../../../services/authService";
+import { toast } from "react-toastify";
 
 type CollapsedSidebarProps = {
   toggleSidebar: () => void;
 };
 
 const CollapsedSidebar = ({ toggleSidebar }: CollapsedSidebarProps) => {
+  const navigate = useNavigate();
   const baseLinkClasses =
     "py-3 px-3 font-semibold text-pure-white rounded-xl transition-colors cursor-pointer";
   const hoverClasses = "hover:bg-soft-violet hover:text-pure-white";
   const activeClasses =
     "bg-soft-violet text-white shadow-md shadow-deep-violet";
+
+  const handleLogout = async () => {
+    try {
+      const success = await logOutUser();
+      if (success) navigate("/login");
+    } catch (error) {
+      toast.error(
+        error instanceof Error ? error.message : "Unexpected error occurred",
+        {
+          autoClose: 3000,
+        }
+      );
+    }
+  };
 
   return (
     <nav className="hidden md:flex flex-col justify-between items-center sticky top-0 left-0 z-50 w-24 h-screen py-3 bg-sidebar">
@@ -44,7 +61,10 @@ const CollapsedSidebar = ({ toggleSidebar }: CollapsedSidebarProps) => {
 
       {/* Logout button */}
       <div className="flex justify-center items-center w-full px-4 mb-6">
-        <button className={`${baseLinkClasses} bg-[#454545] ${hoverClasses}`}>
+        <button
+          className={`${baseLinkClasses} bg-[#454545] ${hoverClasses}`}
+          onClick={handleLogout}
+        >
           <LogOut size={28} className="text-white cursor-pointer" />
         </button>
       </div>
