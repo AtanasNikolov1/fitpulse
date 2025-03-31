@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const NotFoundPage = () => {
   return (
-    <section className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-r from-soft-violet to-purple-600">
+    <section className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-r from-soft-violet to-deep-violet">
       <div className="container flex flex-col items-center gap-10 bg-white shadow-lg rounded-3xl p-8 md:p-12">
         <img
           src="/images/page-not-found.jpg"
