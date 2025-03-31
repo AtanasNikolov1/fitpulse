@@ -22,6 +22,8 @@
   --color-medium-violet: #7636dd; /*Primary buttons*/
   --color-deep-violet: #5a20b6; /*Active elements and highlights*/
   --color-dark-violet: #4c1d95; /*Dark mode and strong visual focus*/
+
+  --color-sidebar: #1f2525;
 }
 
 * {
