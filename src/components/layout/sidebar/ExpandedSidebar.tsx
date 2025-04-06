@@ -31,7 +31,7 @@ const ExpandedSidebar = ({ toggleSidebar }: ExtendedSidebarProps) => {
   };
 
   return (
-    <nav className="flex flex-col justify-between w-68 h-screen md:sticky md:top-0 md:left-0 lg:relative md:z-50 lg:z-0 py-3 bg-sidebar transition-width duration-300">
+    <nav className="flex flex-col justify-between w-68 h-screen fixed top-0 left-0 z-50 z-0 py-3 bg-sidebar transition-width duration-300">
       {/* Sidebar wrapper for the header and the navigation links */}
       <div className="flex flex-col gap-14 w-full">
         {/* Sidebar Header  */}

@@ -31,7 +31,7 @@ const CollapsedSidebar = ({ toggleSidebar }: CollapsedSidebarProps) => {
   };
 
   return (
-    <nav className="hidden md:flex flex-col justify-between items-center sticky top-0 left-0 z-50 w-24 h-screen py-3 bg-sidebar">
+    <nav className="hidden md:flex flex-col justify-between items-center fixed top-0 left-0 z-50 w-24 h-screen py-3 bg-sidebar">
       {/* Sidebar wrapper for the header and the navigation links */}
       <div className="flex flex-col gap-14 w-full">
         {/* Sidebar Header */}
