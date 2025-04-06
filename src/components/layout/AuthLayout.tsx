@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import NavBar from "./navigation/NavBar";
-import ScrollToTop from "../../utils/ScrollToTop";
+import ScrollToTop from "./ScrollToTop";
+
 
 const AuthLayout = () => {
   return (

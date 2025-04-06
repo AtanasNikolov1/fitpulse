@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import MobileSidebar from "./sidebar/MobileSidebar";
 import DesktopSidebar from "./sidebar/DesktopSidebar";
+import ScrollToTop from "./ScrollToTop";
 
 const DashboardLayout = () => {
   const [open, setOpen] = useState(false);
@@ -20,19 +21,22 @@ const DashboardLayout = () => {
   }, []);
 
   return (
-    <div
-      className={`min-h-screen ${
-        open ? "bg-medium-gray md:bg-light-gray" : "bg-light-gray"
-      }`}
-    >
-      <MobileSidebar open={open} toggleSidebar={toggleSidebar} />
-      <div className="flex flex-row relative">
-        <DesktopSidebar open={open} toggleSidebar={toggleSidebar} />
-        <div className="lg:flex-1">
-          <Outlet />
+    <>
+      <ScrollToTop />
+      <div
+        className={`min-h-screen ${
+          open ? "bg-medium-gray md:bg-light-gray" : "bg-light-gray"
+        }`}
+      >
+        <MobileSidebar open={open} toggleSidebar={toggleSidebar} />
+        <div className="flex flex-row relative">
+          <DesktopSidebar open={open} toggleSidebar={toggleSidebar} />
+          <div className="lg:flex-1">
+            <Outlet />
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
