@@ -14,7 +14,11 @@ import {
 import ProgressDisplay from "../ProgressDisplay";
 import ProgressEditor from "../ProgressEditor";
 
-const DailyWeight = ({ data }: { data: WeightRecordWithId | null }) => {
+type DailyWeightProps = {
+  data: WeightRecordWithId | null;
+};
+
+const DailyWeight = ({ data }: DailyWeightProps) => {
   const [isEditing, setIsEditing] = useState(false);
   const [weightInput, setWeightInput] = useState(0);
   const userId = useUserId();
