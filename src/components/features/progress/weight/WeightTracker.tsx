@@ -11,6 +11,7 @@ import {
   getWeightRecords,
 } from "../../../../services/weightService";
 import { transformRecordDates } from "../../../../utils/formatData";
+import TrackerWrapper from "../TrackerWrapper";
 
 const WeightTracker = () => {
   const userId = useUserId();
@@ -38,7 +39,7 @@ const WeightTracker = () => {
   if (chartError || dailyError) return <div>Error loading weight data</div>;
 
   return (
-    <div className="bg-white pt-6 pb-3 pr-3 md:pr-6 rounded-2xl w-full">
+    <TrackerWrapper>
       <WeightChart
         data={
           chartData && chartData.length > 0
@@ -47,7 +48,7 @@ const WeightTracker = () => {
         }
       />
       <DailyWeight data={dailyWeight ?? null} />
-    </div>
+    </TrackerWrapper>
   );
 };
 
