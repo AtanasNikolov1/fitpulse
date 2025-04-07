@@ -2,7 +2,7 @@ import { Records } from "./sharedTypes";
 
 export type SleepRecord = {
   createdAt: string;
-  sleep: number;
+  hours: number;
 };
 
 export type SleepRecordWithId = SleepRecord & {
@@ -11,7 +11,7 @@ export type SleepRecordWithId = SleepRecord & {
 
 export type SleepMutationVariables = {
   userId: string;
-  sleep: number;
+  hours: number;
 };
 
 export type SleepRecords = Records<SleepRecord>;
