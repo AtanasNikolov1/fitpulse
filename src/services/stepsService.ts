@@ -1,58 +1,88 @@
+import { db } from "../config/firebase";
 import {
   addDoc,
   collection,
   doc,
+  DocumentData,
   getDocs,
+  limit,
+  orderBy,
   query,
   updateDoc,
   where,
 } from "firebase/firestore";
-import { handleError } from "../utils/errorHandler";
-import { db } from "../config/firebase";
+import { StepsRecords, StepsRecordWithId } from "../types/stepsTypes";
+import { createCustomErrorMessage } from "../utils/errorHandler";
 
-export const getSteps = async (userId: string) => {
+export const getStepsRecords = async (
+  userId: string
+): Promise<StepsRecords> => {
   try {
     const stepsRef = collection(db, "users", userId, "steps");
-    const stepsSnap = await getDocs(stepsRef);
+    const stepsQuery = query(stepsRef, orderBy("createdAt", "desc"), limit(7));
+    const stepsSnap = await getDocs(stepsQuery);
 
     if (stepsSnap.empty) {
       console.log("No steps records found.");
       return [];
     }
 
-    const stepsData = stepsSnap.docs.map((doc) => doc.data());
+    const stepsData: StepsRecords = stepsSnap.docs
+      .map((doc) => {
+        const data = doc.data() as DocumentData;
+        return { createdAt: data.createdAt, steps: data.steps };
+      })
+      .reverse();
     return stepsData;
   } catch (error) {
-    handleError(error, "Failed to fetch steps records");
+    const message = createCustomErrorMessage(
+      error,
+      "Failed to fetch steps records."
+    );
+    throw new Error(message);
   }
 };
 
-export const getTodaySteps = async (userId: string) => {
+export const getTodaySteps = async (
+  userId: string
+): Promise<StepsRecordWithId | null> => {
   try {
     const today = new Date().toISOString().split("T")[0];
     const stepsRef = collection(db, "users", userId, "steps");
 
-    const q = query(
+    const stepsQuery = query(
       stepsRef,
       where("createdAt", ">=", today),
       where("createdAt", "<", `${today}T23:59:59.999Z`)
     );
-    const stepsSnap = await getDocs(q);
+    const stepsSnap = await getDocs(stepsQuery);
 
     if (stepsSnap.empty) {
       console.log("No steps record for today.");
       return null;
     }
 
-    const stepsData = stepsSnap.docs[0].data();
+    const stepsData = stepsSnap.docs[0].data() as DocumentData;
     const stepsDocId = stepsSnap.docs[0].id;
-    return { ...stepsData, id: stepsDocId };
+    const record: StepsRecordWithId = {
+      createdAt: stepsData.createdAt,
+      steps: stepsData.steps,
+      id: stepsDocId,
+    };
+    return record;
   } catch (error) {
-    handleError(error, "Failed to fetch today's steps record");
+    const message = createCustomErrorMessage(
+      error,
+      "Failed to fetch today's steps record."
+    );
+    throw new Error(message);
   }
 };
 
-export const addSteps = async (userId: string, steps: number) => {
+export const addTodaySteps = async (
+  userId: string,
+  steps: number
+): Promise<string> => {
   try {
     const stepsRef = collection(db, "users", userId, "steps");
     const date = new Date();
@@ -63,27 +93,39 @@ export const addSteps = async (userId: string, steps: number) => {
 
     return docRef.id;
   } catch (error) {
-    handleError(error, "Failed to add steps record");
+    const message = createCustomErrorMessage(
+      error,
+      "Failed to add steps record."
+    );
+    throw new Error(message);
   }
 };
 
-export const editSteps = async (userId: string, newSteps: number) => {
+export const editTodaySteps = async (
+  userId: string,
+  newSteps: number
+): Promise<string> => {
   try {
     const stepsData = await getTodaySteps(userId);
 
     if (stepsData === null) {
-      console.log("No steps record found for today.");
-      return null;
+      throw new Error("No steps record found for today.");
     }
 
-    const stepsDocId = stepsData!.id;
+    const stepsDocId = stepsData.id;
 
     const stepsRef = doc(db, "users", userId, "steps", stepsDocId);
 
     await updateDoc(stepsRef, {
       steps: newSteps,
     });
+
+    return stepsDocId;
   } catch (error) {
-    handleError(error, "Failed to edit steps record");
+    const message = createCustomErrorMessage(
+      error,
+      "Failed to edit steps record."
+    );
+    throw new Error(message);
   }
 };
