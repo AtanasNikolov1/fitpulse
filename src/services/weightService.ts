@@ -16,7 +16,7 @@ import { createCustomErrorMessage } from "../utils/errorHandler";
 
 export const getWeightRecords = async (
   userId: string
-): Promise<WeightRecords | never> => {
+): Promise<WeightRecords> => {
   try {
     const weightRef = collection(db, "users", userId, "weight");
     const weightQuery = query(
@@ -49,7 +49,7 @@ export const getWeightRecords = async (
 
 export const getTodayWeight = async (
   userId: string
-): Promise<WeightRecordWithId | null | never> => {
+): Promise<WeightRecordWithId | null> => {
   try {
     const today = new Date().toISOString().split("T")[0];
     const weightRef = collection(db, "users", userId, "weight");
@@ -87,7 +87,7 @@ export const getTodayWeight = async (
 export const addTodayWeight = async (
   userId: string,
   weight: number
-): Promise<string | never> => {
+): Promise<string> => {
   try {
     const weightRef = collection(db, "users", userId, "weight");
     const date = new Date();
@@ -109,7 +109,7 @@ export const addTodayWeight = async (
 export const editTodayWeight = async (
   userId: string,
   newWeight: number
-): Promise<string | never> => {
+): Promise<string> => {
   try {
     const weightData = await getTodayWeight(userId);
 
