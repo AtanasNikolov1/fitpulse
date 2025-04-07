@@ -30,7 +30,7 @@ export const getSleepRecords = async (
     const sleepData: SleepRecords = sleepSnap.docs
       .map((doc) => {
         const data = doc.data() as DocumentData;
-        return { createdAt: data.createdAt, sleep: data.sleep };
+        return { createdAt: data.createdAt, hours: data.hours };
       })
       .reverse();
     return sleepData;
@@ -66,7 +66,7 @@ export const getTodaySleep = async (
     const sleepDocId = sleepSnap.docs[0].id;
     const record: SleepRecordWithId = {
       createdAt: sleepData.createdAt,
-      sleep: sleepData.sleep,
+      hours: sleepData.hours,
       id: sleepDocId,
     };
     return record;
@@ -103,7 +103,7 @@ export const addTodaySleep = async (
 
 export const editTodaySleep = async (
   userId: string,
-  newSleep: number
+  newHours: number
 ): Promise<string> => {
   try {
     const sleepData = await getTodaySleep(userId);
@@ -117,7 +117,7 @@ export const editTodaySleep = async (
     const sleepRef = doc(db, "users", userId, "sleep", sleepDocId);
 
     await updateDoc(sleepRef, {
-      sleep: newSleep,
+      hours: newHours,
     });
 
     return sleepDocId;
