@@ -1,58 +1,88 @@
+import { db } from "../config/firebase";
 import {
   addDoc,
   collection,
   doc,
+  DocumentData,
   getDocs,
+  limit,
+  orderBy,
   query,
   updateDoc,
   where,
 } from "firebase/firestore";
-import { handleError } from "../utils/errorHandler";
-import { db } from "../config/firebase";
+import { SleepRecords, SleepRecordWithId } from "../types/sleepTypes";
+import { createCustomErrorMessage } from "../utils/errorHandler";
 
-export const getSleep = async (userId: string) => {
+export const getSleepRecords = async (
+  userId: string
+): Promise<SleepRecords> => {
   try {
     const sleepRef = collection(db, "users", userId, "sleep");
-    const sleepSnap = await getDocs(sleepRef);
+    const weightQuery = query(sleepRef, orderBy("createdAt", "desc"), limit(7));
+    const sleepSnap = await getDocs(weightQuery);
 
     if (sleepSnap.empty) {
       console.log("No sleep records found.");
       return [];
     }
 
-    const sleepData = sleepSnap.docs.map((doc) => doc.data());
+    const sleepData: SleepRecords = sleepSnap.docs
+      .map((doc) => {
+        const data = doc.data() as DocumentData;
+        return { createdAt: data.createdAt, sleep: data.sleep };
+      })
+      .reverse();
     return sleepData;
   } catch (error) {
-    handleError(error, "Failed to fetch sleep records");
+    const message = createCustomErrorMessage(
+      error,
+      "Failed to fetch sleep records."
+    );
+    throw new Error(message);
   }
 };
 
-export const getTodaySleep = async (userId: string) => {
+export const getTodaySleep = async (
+  userId: string
+): Promise<SleepRecordWithId | null> => {
   try {
     const today = new Date().toISOString().split("T")[0];
     const sleepRef = collection(db, "users", userId, "sleep");
 
-    const q = query(
+    const sleepQuery = query(
       sleepRef,
       where("createdAt", ">=", today),
       where("createdAt", "<", `${today}T23:59:59.999Z`)
     );
-    const sleepSnap = await getDocs(q);
+    const sleepSnap = await getDocs(sleepQuery);
 
     if (sleepSnap.empty) {
       console.log("No sleep record for today.");
       return null;
     }
 
-    const sleepData = sleepSnap.docs[0].data();
+    const sleepData = sleepSnap.docs[0].data() as DocumentData;
     const sleepDocId = sleepSnap.docs[0].id;
-    return { ...sleepData, id: sleepDocId };
+    const record: SleepRecordWithId = {
+      createdAt: sleepData.createdAt,
+      sleep: sleepData.sleep,
+      id: sleepDocId,
+    };
+    return record;
   } catch (error) {
-    handleError(error, "Failed to fetch today's sleep record");
+    const message = createCustomErrorMessage(
+      error,
+      "Failed to fetch today's sleep record"
+    );
+    throw new Error(message);
   }
 };
 
-export const addSleep = async (userId: string, hours: number) => {
+export const addTodaySleep = async (
+  userId: string,
+  hours: number
+): Promise<string> => {
   try {
     const sleepRef = collection(db, "users", userId, "sleep");
     const date = new Date();
@@ -63,20 +93,26 @@ export const addSleep = async (userId: string, hours: number) => {
 
     return docRef.id;
   } catch (error) {
-    handleError(error, "Failed to add sleep record");
+    const message = createCustomErrorMessage(
+      error,
+      "Failed to add sleep record."
+    );
+    throw new Error(message);
   }
 };
 
-export const editSleep = async (userId: string, newSleep: number) => {
+export const editTodaySleep = async (
+  userId: string,
+  newSleep: number
+): Promise<string> => {
   try {
     const sleepData = await getTodaySleep(userId);
 
     if (sleepData === null) {
-      console.log("No sleep record found for today.");
-      return null;
+      throw new Error("No sleep record found for today.");
     }
 
-    const sleepDocId = sleepData!.id;
+    const sleepDocId = sleepData.id;
 
     const sleepRef = doc(db, "users", userId, "sleep", sleepDocId);
 
@@ -86,6 +122,10 @@ export const editSleep = async (userId: string, newSleep: number) => {
 
     return sleepDocId;
   } catch (error) {
-    handleError(error, "Failed to edit sleep record");
+    const message = createCustomErrorMessage(
+      error,
+      "Failed to edit sleep record"
+    );
+    throw new Error(message);
   }
 };
