@@ -10,6 +10,7 @@ import AuthLayout from "../components/layout/AuthLayout";
 import DashboardLayout from "../components/layout/DashboardLayout";
 import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
+import ProgressPage from "../pages/ProgressPage";
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
         path: "",
         element: <DashboardLayout />,
         children: [
-          { path: "progress", element: <Dashboard /> },
+          { path: "progress", element: <ProgressPage /> },
           { path: "workouts", element: <Dashboard /> },
           { path: "nutrition", element: <Dashboard /> },
           { path: "goals", element: <Dashboard /> },
