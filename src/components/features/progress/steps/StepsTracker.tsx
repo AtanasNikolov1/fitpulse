@@ -9,6 +9,7 @@ import { transformRecordDates } from "../../../../utils/formatData";
 import TrackerWrapper from "../TrackerWrapper";
 import StepsChart from "./StepsChart";
 import DailySteps from "./DailySteps";
+import LoadingSpinner from "../../../ui/LoadingSpinner";
 
 const StepsTracker = () => {
   const userId = useUserId();
@@ -32,8 +33,8 @@ const StepsTracker = () => {
     queryFn: () => getTodaySteps(userId!),
   });
 
-  if (isChartLoading || isDailyLoading) return <div>Loading...</div>;
   if (chartError || dailyError) return <div>Error loading steps data</div>;
+  if (isChartLoading || isDailyLoading) return <LoadingSpinner />;
 
   return (
     <TrackerWrapper>

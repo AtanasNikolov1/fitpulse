@@ -9,6 +9,7 @@ import { transformRecordDates } from "../../../../utils/formatData";
 import TrackerWrapper from "../TrackerWrapper";
 import WaterChart from "./WaterChart";
 import DailyWater from "./DailyWater";
+import LoadingSpinner from "../../../ui/LoadingSpinner";
 
 const WaterTracker = () => {
   const userId = useUserId();
@@ -32,8 +33,8 @@ const WaterTracker = () => {
     queryFn: () => getTodayWater(userId!),
   });
 
-  if (isChartLoading || isDailyLoading) return <div>Loading...</div>;
   if (chartError || dailyError) return <div>Error loading water data</div>;
+  if (isChartLoading || isDailyLoading) return <LoadingSpinner />;
 
   return (
     <TrackerWrapper>

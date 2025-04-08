@@ -9,6 +9,7 @@ import { transformRecordDates } from "../../../../utils/formatData";
 import TrackerWrapper from "../TrackerWrapper";
 import SleepChart from "./SleepChart";
 import DailySleep from "./DailySleep";
+import LoadingSpinner from "../../../ui/LoadingSpinner";
 
 const SleepTracker = () => {
   const userId = useUserId();
@@ -32,7 +33,7 @@ const SleepTracker = () => {
     queryFn: () => getTodaySleep(userId!),
   });
 
-  if (isChartLoading || isDailyLoading) return <div>Loading...</div>;
+  if (isChartLoading || isDailyLoading) return <LoadingSpinner />;
   if (chartError || dailyError)
     return <div>Error loading sleep hours data</div>;
 
