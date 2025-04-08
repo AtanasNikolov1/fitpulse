@@ -11,6 +11,7 @@ import {
   Cell,
 } from "recharts";
 import { SleepRecords } from "../../../../types/sleepTypes";
+import CustomTooltip from "../../../ui/CustomTooltip";
 
 type SleepChartProps = {
   data: SleepRecords;
@@ -23,7 +24,9 @@ const SleepChart = ({ data }: SleepChartProps) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="createdAt" />
         <YAxis domain={[0, 12]} />
-        <Tooltip />
+        <Tooltip
+          content={<CustomTooltip labelPrefix="Sleep Duration" unit="h" />}
+        />
         <ReferenceLine
           y={8}
           stroke="#FE0000"

@@ -9,6 +9,7 @@ import {
   Area,
 } from "recharts";
 import { WaterRecords } from "../../../../types/waterTypes";
+import CustomTooltip from "../../../ui/CustomTooltip";
 
 type WaterChartProps = {
   data: WaterRecords;
@@ -21,7 +22,9 @@ const WaterChart = ({ data }: WaterChartProps) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="createdAt" />
         <YAxis domain={[0, 4000]} />
-        <Tooltip />
+        <Tooltip
+          content={<CustomTooltip labelPrefix="Water Intake" unit="ml" />}
+        />
         <ReferenceLine
           y={2000}
           stroke="#FE0000"

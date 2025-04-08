@@ -9,6 +9,7 @@ import {
   YAxis,
 } from "recharts";
 import { WeightRecords } from "../../../../types/weightTypes";
+import CustomTooltip from "../../../ui/CustomTooltip";
 
 type WeightChartProps = {
   data: WeightRecords;
@@ -21,7 +22,7 @@ const WeightChart = ({ data }: WeightChartProps) => {
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="createdAt" padding={{ left: 10, right: 10 }} />
         <YAxis domain={[0, 140]} />
-        <Tooltip />
+        <Tooltip content={<CustomTooltip labelPrefix="Weight" unit="kg" />} />
         <Line
           type="monotone"
           dataKey="weight"
