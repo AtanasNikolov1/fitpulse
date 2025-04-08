@@ -10,6 +10,7 @@ import TrackerWrapper from "../TrackerWrapper";
 import SleepChart from "./SleepChart";
 import DailySleep from "./DailySleep";
 import LoadingSpinner from "../../../ui/LoadingSpinner";
+import ErrorDisplay from "../../../ui/ErrorDisplay";
 
 const SleepTracker = () => {
   const userId = useUserId();
@@ -35,7 +36,7 @@ const SleepTracker = () => {
 
   if (isChartLoading || isDailyLoading) return <LoadingSpinner />;
   if (chartError || dailyError)
-    return <div>Error loading sleep hours data</div>;
+    return <ErrorDisplay message="Error loading sleep hours data." />;
 
   return (
     <TrackerWrapper>

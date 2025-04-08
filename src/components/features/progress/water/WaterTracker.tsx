@@ -10,6 +10,7 @@ import TrackerWrapper from "../TrackerWrapper";
 import WaterChart from "./WaterChart";
 import DailyWater from "./DailyWater";
 import LoadingSpinner from "../../../ui/LoadingSpinner";
+import ErrorDisplay from "../../../ui/ErrorDisplay";
 
 const WaterTracker = () => {
   const userId = useUserId();
@@ -33,8 +34,9 @@ const WaterTracker = () => {
     queryFn: () => getTodayWater(userId!),
   });
 
-  if (chartError || dailyError) return <div>Error loading water data</div>;
   if (isChartLoading || isDailyLoading) return <LoadingSpinner />;
+  if (chartError || dailyError)
+    return <ErrorDisplay message="Error loading water intake data." />;
 
   return (
     <TrackerWrapper>

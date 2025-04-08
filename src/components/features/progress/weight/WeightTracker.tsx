@@ -13,6 +13,7 @@ import {
 import { transformRecordDates } from "../../../../utils/formatData";
 import TrackerWrapper from "../TrackerWrapper";
 import LoadingSpinner from "../../../ui/LoadingSpinner";
+import ErrorDisplay from "../../../ui/ErrorDisplay";
 
 const WeightTracker = () => {
   const userId = useUserId();
@@ -36,8 +37,9 @@ const WeightTracker = () => {
     queryFn: () => getTodayWeight(userId!),
   });
 
-  if (chartError || dailyError) return <div>Error loading weight data</div>;
   if (isChartLoading || isDailyLoading) return <LoadingSpinner />;
+  if (chartError || dailyError)
+    return <ErrorDisplay message="Error loading weight data." />;
 
   return (
     <TrackerWrapper>

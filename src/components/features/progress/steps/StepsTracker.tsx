@@ -10,6 +10,7 @@ import TrackerWrapper from "../TrackerWrapper";
 import StepsChart from "./StepsChart";
 import DailySteps from "./DailySteps";
 import LoadingSpinner from "../../../ui/LoadingSpinner";
+import ErrorDisplay from "../../../ui/ErrorDisplay";
 
 const StepsTracker = () => {
   const userId = useUserId();
@@ -33,8 +34,9 @@ const StepsTracker = () => {
     queryFn: () => getTodaySteps(userId!),
   });
 
-  if (chartError || dailyError) return <div>Error loading steps data</div>;
   if (isChartLoading || isDailyLoading) return <LoadingSpinner />;
+  if (chartError || dailyError)
+    return <ErrorDisplay message="Error loading steps data." />;
 
   return (
     <TrackerWrapper>
