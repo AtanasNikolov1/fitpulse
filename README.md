@@ -1,50 +1,47 @@
-# React + TypeScript + Vite
+# 🏋️‍♂️ FitPulse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**FitPulse** is a modern fitness tracker web app that helps users monitor workouts, calorie intake, achievements, and personalized settings. Built with React and Firebase, it's designed to provide a sleek and responsive user experience for staying on top of your fitness journey.
 
-Currently, two official plugins are available:
+> 🚧 Some pages are currently under development (Settings, Achievements, Workouts, and Calorie Tracker).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🔗 Live Demo
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+🌐 [https://fitpulse-ten.vercel.app](https://fitpulse-ten.vercel.app)
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## ⚙️ Features
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- 🔐 Google Sign-In authentication with Firebase
+- 📅 Track daily workouts and calorie intake
+- 🏆 Achievements page for tracking fitness goals _(coming soon)_
+- 🧑‍💻 User settings customization _(coming soon)_
+- ⚡ Fast and responsive UI with Tailwind CSS
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+---
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## 🛠️ Tech Stack
+
+- **Frontend:** React (Vite), Tailwind CSS
+- **Backend:** Firebase
+- **Hosting:** Vercel
+
+---
+
+## 🚀 Getting Started
+
+To run the app locally:
+
+```bash
+# Clone the repo
+git clone https://github.com/AtanasNikolov1/fitpulse.git
+cd fitpulse
+
+# Install dependencies
+npm install
+
+# Start the dev server
+npm run dev
 ```
