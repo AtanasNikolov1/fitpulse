@@ -1,4 +1,4 @@
-import { Records } from "./recordTypes";
+import { Records } from "./sharedTypes";
 
 export type WeightRecord = {
   createdAt: string;
