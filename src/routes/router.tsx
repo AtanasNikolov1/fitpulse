@@ -2,7 +2,6 @@ import { createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import SignUpPage from "../pages/SignUpPage";
-import Dashboard from "../pages/Dashboard";
 import NotFoundPage from "../pages/NotFoundPage";
 import ProtectedRoute from "../components/layout/ProtectedRoute";
 import PublicLayout from "../components/layout/PublicLayout";
@@ -14,7 +13,7 @@ import ProgressPage from "../pages/ProgressPage";
 import WorkoutsPage from "../pages/WorkoutsPage";
 import CalorieTrackerPage from "../pages/CalorieTrackerPage";
 import AchievementsPage from "../pages/AchievementsPage";
-import SettingsPage from "../pages/Settingspage";
+import ProfilePage from "../pages/ProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -48,7 +47,7 @@ const router = createBrowserRouter([
           { path: "workouts", element: <WorkoutsPage /> },
           { path: "calories", element: <CalorieTrackerPage /> },
           { path: "achievements", element: <AchievementsPage /> },
-          { path: "settings", element: <SettingsPage /> },
+          { path: "settings", element: <ProfilePage /> },
         ],
       },
     ],
