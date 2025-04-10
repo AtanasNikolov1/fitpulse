@@ -11,6 +11,10 @@ import DashboardLayout from "../components/layout/DashboardLayout";
 import AboutPage from "../pages/AboutPage";
 import ContactPage from "../pages/ContactPage";
 import ProgressPage from "../pages/ProgressPage";
+import WorkoutsPage from "../pages/WorkoutsPage";
+import CalorieTrackerPage from "../pages/CalorieTrackerPage";
+import AchievementsPage from "../pages/AchievementsPage";
+import SettingsPage from "../pages/Settingspage";
 
 const router = createBrowserRouter([
   {
@@ -41,10 +45,10 @@ const router = createBrowserRouter([
         element: <DashboardLayout />,
         children: [
           { path: "progress", element: <ProgressPage /> },
-          { path: "workouts", element: <Dashboard /> },
-          { path: "nutrition", element: <Dashboard /> },
-          { path: "goals", element: <Dashboard /> },
-          { path: "social", element: <Dashboard /> },
+          { path: "workouts", element: <WorkoutsPage /> },
+          { path: "calories", element: <CalorieTrackerPage /> },
+          { path: "achievements", element: <AchievementsPage /> },
+          { path: "settings", element: <SettingsPage /> },
         ],
       },
     ],
